@@ -174,7 +174,7 @@ export const technologies: TechCategory[] = [
 
 /** Soft skills as prose — backed by the internship recommendation and day-to-day work. */
 export const softSkillsText =
-  "I’m proactive when something breaks or a requirement shifts, and I look for a solution instead of waiting for instructions. I work well in a team: clear communication, pull requests, and code reviews. I stay organised with the work in front of me, and I keep learning — new tools, new stacks — when they help ship something real.";
+  "I like to take ownership of what I’m working on. If something isn’t clear or plans change, I ask early, look for a practical way forward, and keep people in the loop instead of waiting on the sidelines. I’m comfortable collaborating day to day: listening, explaining my thinking in plain language, and being open to feedback so the work improves. I try to stay organised and reliable with deadlines, and I adapt when priorities shift. I’m also curious by nature — I keep learning new tools and approaches when they help the team deliver something useful.";
 
 export type SpokenLanguage = {
   name: string;
