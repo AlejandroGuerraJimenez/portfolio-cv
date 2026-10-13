@@ -1,0 +1,124 @@
+---
+import { person } from "../data/cv";
+
+const isPlaceholder = (value: string) => value.includes("[PLACEHOLDER:");
+---
+
+<section id="about" class="section about" aria-labelledby="about-heading">
+  <div class="wrap about__grid">
+    <div class="about__identity rise">
+      <p class="section__label">About me</p>
+      <h1 id="about-heading">{person.name}</h1>
+      <p class="about__title rise rise-delay-1">{person.title}</p>
+      <p class="about__meta rise rise-delay-2">
+        {
+          isPlaceholder(person.location) ? (
+            <span class="placeholder-tag">{person.location}</span>
+          ) : (
+            person.location
+          )
+        }
+      </p>
+    </div>
+
+    <div class="about__copy rise rise-delay-2">
+      <p class="about__tagline">{person.tagline}</p>
+      {
+        person.about.map((paragraph) =>
+          isPlaceholder(paragraph) ? (
+            <p class="placeholder">{paragraph}</p>
+          ) : (
+            <p>{paragraph}</p>
+          ),
+        )
+      }
+
+      <div class="btn-row rise rise-delay-3">
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+
+      <ul class="about__links" aria-label="Profiles">
+        <li>
+          {
+            isPlaceholder(person.links.github) ? (
+              <span class="placeholder-tag">GitHub: {person.links.github}</span>
+            ) : (
+              <a href={person.links.github} rel="noopener noreferrer" target="_blank">
+                GitHub
+              </a>
+            )
+          }
+        </li>
+        <li>
+          {
+            isPlaceholder(person.links.linkedin) ? (
+              <span class="placeholder-tag">LinkedIn: {person.links.linkedin}</span>
+            ) : (
+              <a href={person.links.linkedin} rel="noopener noreferrer" target="_blank">
+                LinkedIn
+              </a>
+            )
+          }
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-top: clamp(3.5rem, 10vw, 6.5rem);
+    min-height: calc(100svh - var(--header-h));
+    display: flex;
+    align-items: center;
+  }
+
+  .about__grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: end;
+  }
+
+  @media (min-width: 800px) {
+    .about__grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: center;
+    }
+  }
+
+  .about__title {
+    margin: var(--space-md) 0 var(--space-sm);
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink-soft);
+    max-width: none;
+  }
+
+  .about__meta {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    max-width: none;
+  }
+
+  .about__tagline {
+    font-size: 1.12rem;
+    color: var(--ink);
+    max-width: 34rem;
+  }
+
+  .about__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.35rem;
+    margin-top: var(--space-lg);
+    font-size: 0.95rem;
+  }
+
+  .about__links a {
+    font-weight: 500;
+  }
+</style>

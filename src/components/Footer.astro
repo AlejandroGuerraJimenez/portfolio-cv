@@ -1,0 +1,94 @@
+---
+import { person } from "../data/cv";
+
+const year = new Date().getFullYear();
+const isPlaceholder = (value: string) => value.includes("[PLACEHOLDER:");
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__credit">
+      <span class="site-footer__name">{person.name}</span>
+      <span aria-hidden="true"> · </span>
+      <span>{year}</span>
+    </p>
+
+    <ul class="site-footer__links" aria-label="Professional links">
+      <li>
+        {
+          isPlaceholder(person.links.email) ? (
+            <span class="placeholder-tag">Email</span>
+          ) : (
+            <a href={`mailto:${person.links.email}`}>Email</a>
+          )
+        }
+      </li>
+      <li>
+        {
+          isPlaceholder(person.links.github) ? (
+            <span class="placeholder-tag">GitHub</span>
+          ) : (
+            <a href={person.links.github} rel="noopener noreferrer" target="_blank">
+              GitHub
+            </a>
+          )
+        }
+      </li>
+      <li>
+        {
+          isPlaceholder(person.links.linkedin) ? (
+            <span class="placeholder-tag">LinkedIn</span>
+          ) : (
+            <a href={person.links.linkedin} rel="noopener noreferrer" target="_blank">
+              LinkedIn
+            </a>
+          )
+        }
+      </li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-block: var(--space-lg) var(--space-xl);
+    border-top: 1px solid var(--line);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm) var(--space-md);
+  }
+
+  .site-footer__credit {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    max-width: none;
+  }
+
+  .site-footer__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .site-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.1rem;
+    font-size: 0.88rem;
+  }
+
+  .site-footer__links a {
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  .site-footer__links a:hover {
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,97 @@
+---
+import { person } from "../data/cv";
+
+const isPlaceholder = (value: string) => value.includes("[PLACEHOLDER:");
+---
+
+<section id="contact" class="section contact" aria-labelledby="contact-heading">
+  <div class="wrap contact__inner">
+    <header>
+      <p class="section__label">Contact</p>
+      <h2 id="contact-heading">Let’s talk</h2>
+      <p class="section__intro">
+        Open to junior software roles in Spain and across Europe. Reach out by email or on the
+        networks below.
+      </p>
+    </header>
+
+    <ul class="contact__list">
+      <li>
+        <span class="contact__key">Email</span>
+        {
+          isPlaceholder(person.links.email) ? (
+            <span class="placeholder-tag">{person.links.email}</span>
+          ) : (
+            <a href={`mailto:${person.links.email}`}>{person.links.email}</a>
+          )
+        }
+      </li>
+      <li>
+        <span class="contact__key">GitHub</span>
+        {
+          isPlaceholder(person.links.github) ? (
+            <span class="placeholder-tag">{person.links.github}</span>
+          ) : (
+            <a href={person.links.github} rel="noopener noreferrer" target="_blank">
+              {person.links.github.replace(/^https?:\/\//, "")}
+            </a>
+          )
+        }
+      </li>
+      <li>
+        <span class="contact__key">LinkedIn</span>
+        {
+          isPlaceholder(person.links.linkedin) ? (
+            <span class="placeholder-tag">{person.links.linkedin}</span>
+          ) : (
+            <a href={person.links.linkedin} rel="noopener noreferrer" target="_blank">
+              {person.links.linkedin.replace(/^https?:\/\//, "")}
+            </a>
+          )
+        }
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .contact__inner {
+    max-width: 40rem;
+  }
+
+  .contact__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .contact__list li {
+    display: grid;
+    gap: 0.35rem;
+    padding-block: 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  @media (min-width: 560px) {
+    .contact__list li {
+      grid-template-columns: 7rem 1fr;
+      gap: var(--space-md);
+      align-items: baseline;
+    }
+  }
+
+  .contact__key {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .contact__list a {
+    font-weight: 500;
+    word-break: break-word;
+  }
+</style>

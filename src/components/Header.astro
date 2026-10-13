@@ -1,0 +1,91 @@
+---
+import { person, nav } from "../data/cv";
+---
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="#top" aria-label={`${person.name} — home`}>
+      <span class="brand__mark">{person.initials}</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--header-h);
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--paper) 82%, transparent);
+    backdrop-filter: blur(10px);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    height: 100%;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: baseline;
+    color: var(--ink);
+    text-decoration: none;
+    min-width: 0;
+  }
+
+  .brand:hover {
+    color: var(--ink);
+  }
+
+  .brand__mark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+
+  .nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.15rem 1.1rem;
+  }
+
+  .nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .nav a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .nav__list {
+      gap: 0.1rem 0.85rem;
+    }
+
+    .nav a {
+      font-size: 0.84rem;
+    }
+  }
+</style>

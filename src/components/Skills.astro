@@ -1,0 +1,144 @@
+---
+import { softSkillsText, spokenLanguages } from "../data/cv";
+---
+
+<section id="skills" class="section skills" aria-labelledby="skills-heading">
+  <div class="wrap">
+    <header class="skills__header">
+      <p class="section__label">Skills</p>
+      <h2 id="skills-heading">How I work</h2>
+    </header>
+
+    <div class="skills-block">
+      <h3 class="skills-block__label">Soft skills</h3>
+      <p class="skills-block__text">{softSkillsText}</p>
+    </div>
+
+    <div class="skills-block">
+      <h3 class="skills-block__label">Languages</h3>
+      <ul class="lang-row" aria-label="Spoken languages">
+        {
+          spokenLanguages.map((lang) => (
+            <li class="lang">
+              <span class="lang__name">{lang.name}</span>
+              <span class="lang__meter" aria-hidden="true">
+                {[0, 1, 2, 3].map((i) => (
+                  <span class:list={["lang__tick", { "is-on": i < lang.rank }]} />
+                ))}
+              </span>
+              <span class="lang__level">{lang.level}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="skills-note">
+        Actively improving German and French, and open to learning more.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills__header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .skills__header h2 {
+    margin-bottom: 0;
+  }
+
+  .skills-block + .skills-block {
+    margin-top: var(--space-lg);
+  }
+
+  /* Line as a sibling row so Syne descenders (g) never collide with it */
+  .skills-block__label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85em;
+    width: 100%;
+    margin: 0 0 var(--space-md);
+    padding: 0;
+    border: none;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    overflow: visible;
+  }
+
+  .skills-block__label::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: var(--line);
+    flex-shrink: 0;
+  }
+
+  .skills-block__text {
+    margin: 0;
+    max-width: var(--measure);
+    color: var(--ink-soft);
+    hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .lang-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-md) var(--space-xl);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lang {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1 1 7.5rem;
+    min-width: 7.5rem;
+  }
+
+  .lang__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    overflow: visible;
+  }
+
+  .lang__meter {
+    display: flex;
+    gap: 0.35rem;
+    width: 100%;
+    max-width: 7rem;
+  }
+
+  .lang__tick {
+    flex: 1;
+    height: 3px;
+    background: var(--line-strong);
+  }
+
+  .lang__tick.is-on {
+    background: var(--accent);
+  }
+
+  .lang__level {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+
+  .skills-note {
+    margin: var(--space-md) 0 0;
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    max-width: var(--measure);
+  }
+</style>
